@@ -19,6 +19,16 @@ alias gbv='git branch --verbose'
 alias gbvv='git branch --verbose --verbose'
 alias gbvl='git show-branch --topics origin/$(gbmaster)'
 
+# checkout
+alias gco='git checkout'
+fgco () {git checkout $(git branch --sort=-authordate --color --format '%(HEAD) %(align:20)%(refname:short)%(end) %(color:dim)%(align:9)%(upstream:track)%(end) %(color:reset)%(contents:subject)' | fzf --ansi $([[ -z "$1" ]] && echo "" || echo "--query $@") --preview 'git log --stat --color -n 10 $(echo {} | pyp "lines[0][1:].split()[0]") --' | pyp "x[1:].split()[0]")}
+alias gcom='git checkout $(gbmaster)'
+alias gcoi='git checkout --'  # look into git restore at some point
+alias fgcoi='git checkout $(git ls-files --modified | fzf -m --preview "git diff --color -- {1}")'
+
+# merge
+alias gm='git merge'
+
 # commits
 alias gc='git commit --verbose'
 alias gc!='git commit --verbose --amend'
