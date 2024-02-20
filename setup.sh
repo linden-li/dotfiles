@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Check if Zsh is installed
 if ! command -v zsh &> /dev/null; then
@@ -7,7 +7,7 @@ if ! command -v zsh &> /dev/null; then
     # Check if the operating system is macOS
     if [ ! -d "/Applications" ]; then
         echo "This is not macOS. Attempting to install Zsh using apt..."
-        sudo apt update && sudo apt install -y zsh
+        apt update && apt install -y zsh
     else
         echo "This is macOS. Please install Zsh manually."
     fi
@@ -19,12 +19,6 @@ if [ "$SHELL" != "$(which zsh)" ]; then
     chsh -s "$(which zsh)"
 fi
 
-# Install startship
-curl -sS https://starship.rs/install.sh | sh
-echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-
-# install git aliases
-echo "source ./git_alias.zsh" >> ~/.zshrc
 
 # From: https://github.com/JJGO/dotfiles/blob/master/shell-setup.sh
 set -x
@@ -75,11 +69,7 @@ pull_repo $HOME/.tmux/plugins/tpm
 
 mkdir -p $HOME/.zsh
 
-# Fast syntax highlighting
-if [[ ! -d $HOME/.zsh/fast-syntax-highlighting ]]; then
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git $HOME/.zsh/fast-syntax-highlighting
-fi
-pull_repo $HOME/.zsh/fast-syntax-highlighting
+
 
 #######################
 # NEOVIM
@@ -123,3 +113,7 @@ for crate in bat fd-find ripgrep exa tealdeer procs ytop hyperfine bandwhich
 do
     $HOME/.cargo/bin/cargo install $crate
 done
+
+mv ~/.zshrc ~/.zshrc_backup
+ln -sf $HOME/dotfiles/.zshrc ~/.zshrc
+

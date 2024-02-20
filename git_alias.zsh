@@ -27,6 +27,20 @@ alias gca='git commit --verbose --all'
 alias gca!='git commit --verbose --all --amend'
 alias gcan!='git commit --verbose --all --no-edit --amend'
 
+# restore
+alias groi='git restore --'
+alias grs='git restore --staged'
+
+# log
+alias glg='git log --stat'
+fglg () {git log --color --oneline $@ | fzf --ansi --reverse --no-sort --preview 'git show --color {1}' | pyp 'x.split()[0]'}
+alias glgp='git log --stat --patch'
+alias glgpa='git log --stat --patch --author'
+
+alias glgo="git log --date=local --pretty='%C(white)%h%C(yellow)%d %Cred%>|(30)%an%Creset: %s %<|(90)%C(yellow)(%cd)'"
+alias glgoa="git log --date=local --pretty='%C(white)%h%C(yellow)%d %Cred%>|(30)%an%Creset: %s %<|(90)%C(yellow)(%cd)' --author"
+
+# clone
 alias gcl='git clone'
 alias gd='git diff'
 
@@ -36,3 +50,8 @@ alias glu='git pull upstream $(git symbolic-ref --short HEAD)'
 alias gloh='git pull origin --rebase $(git symbolic-ref --short HEAD)'
 alias gp='git push'
 alias gpoh='git push origin HEAD'
+
+# status
+alias gs='git status'
+alias gss='git status --short'
+alias gst='git stash'
