@@ -7,4 +7,5 @@ brew install \
   fd \
   ripgrep \
   tlrc \
-  procs
+  procs \
+  lsd
