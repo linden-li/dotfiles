@@ -1,4 +1,4 @@
-format = "$directory$character$git_branch$git_status$python"
+format = "$directory$git_branch$git_status$python$character"
 add_newline=false
 
 [git_status]
