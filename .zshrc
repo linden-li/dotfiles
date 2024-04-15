@@ -19,6 +19,11 @@ if [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; th
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
+# Check if .venv exists in the home directory and source it if it does
+if [[ -d "$HOME/.venv" ]]; then
+    source "$HOME/.venv/bin/activate"
+fi
+
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
