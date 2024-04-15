@@ -1,5 +1,7 @@
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# TODO: link zshrc and starship.toml to dotfiles
+
 
 # #!/usr/bin/env sh
 
